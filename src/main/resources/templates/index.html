@@ -1,0 +1,54 @@
+<html layout:decorate="~{base}">
+  <div layout:fragment="content">
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div th:each="d : ${drugs}" class="col">
+        <div
+          class="card h-100 overflow-hidden text-bg-dark rounded-4 shadow-sm"
+        >
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+            <h3 class="pt-2 mb-4 display-6 lh-1 fw-bold" th:text="${d.name}">
+              Drug Name
+            </h3>
+            <p
+              th:text="${#strings.length(d.description) > 100 ? #strings.substring(d.description, 0, 100) + '...' : d.description}"
+            >
+              Description
+            </p>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <span th:text="${d.seller}">Seller</span>
+              </li>
+              <li class="d-flex align-items-center me-3"></li>
+              <li class="d-flex align-items-center" sec:authorize="isAuthenticated()">
+                <a
+                  th:if="${d.inStock()}"
+                  class="btn btn-outline-light"
+                  hx:post="@{'/add-to-cart/' + ${d.id}}"
+                  hx-target="#cartButton"
+                  hx-swap="outerHTML"
+                >
+                  <i class="bi bi-plus-lg"></i> Add to cart
+                </a>
+                <button th:unless="${d.inStock()}" disabled="disabled" class="btn btn-outline-light">
+                  <i class="bi bi-x-lg"></i> Out of Stock
+                </button>
+              </li>
+              <li class="d-flex align-items-center" sec:authorize="!isAuthenticated()">
+                <a
+                  th:if="${d.inStock()}"
+                  class="btn btn-outline-light"
+                  th:href="@{/login}"
+                >
+                  <i class="bi bi-plus-lg"></i> Add to cart
+                </a>
+                <a th:unless="${d.inStock()}" th:href="@{/login}" class="btn btn-outline-light">
+                  <i class="bi bi-x-lg"></i> Out of Stock
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

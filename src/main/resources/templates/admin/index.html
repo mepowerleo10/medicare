@@ -1,0 +1,28 @@
+<div layout:decorate="~{admin/base}" layout:fragment="content">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Drugs</h2>
+    <a
+      hx:get="@{/admin/add-drug}"
+      hx-target="#drugFormModal"
+      data-bs-toggle="modal"
+      data-bs-target="#drugFormModal"
+      class="btn btn-dark"
+      >Add Drug <i class="bi bi-plus-lg"></i
+    ></a>
+  </div>
+  <div class="table-responsive small">
+    <table th:replace="~{admin/_drugs_table :: table}">
+    </table>
+  </div>
+  <div
+    id="drugFormModal"
+    class="modal modal-blur fade"
+    style="display: none"
+    aria-hidden="fals"
+    tabindex="-1"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+</div>

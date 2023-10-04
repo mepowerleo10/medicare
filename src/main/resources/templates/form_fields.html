@@ -1,0 +1,105 @@
+<div
+  class="form-floating"
+  th:fragment="textField(field, label)"
+  th:with="disabled=${disabled} ?: false, hasErrors=${hasErrors} ?: false"
+>
+  <input
+    type="text"
+    th:class="${hasErrors}? 'form-control is-invalid' : 'form-control'"
+    th:field="*{__${field}__}"
+    th:placeholder="${label}"
+    th:disabled="${disabled}"
+  />
+  <label th:for="${field}" th:text="${label}"> Default Label </label>
+  <div
+    th:if="${hasErrors}"
+    th:errors="*{__${field}__}"
+    class="invalid-feedback"
+  >
+    Error message
+  </div>
+</div>
+
+<div
+  class="form-floating"
+  th:fragment="numberField(field, label)"
+  th:with="disabled=${disabled} ?: false, hasErrors=${hasErrors} ?: false"
+>
+  <input
+    type="number"
+    th:class="${hasErrors}? 'form-control is-invalid' : 'form-control'"
+    th:field="*{__${field}__}"
+    th:placeholder="${label}"
+    th:value="*{__${field}__}"
+    th:disabled="${disabled}"
+  />
+  <label th:for="${field}" th:text="${label}">Default Label</label>
+  <div
+    th:if="${hasErrors}"
+    th:errors="*{__${field}__}"
+    class="invalid-feedback"
+  >
+    Error message
+  </div>
+</div>
+
+<div
+  class="form-floating"
+  th:fragment="textAreaField(field, label)"
+  th:with="disabled=${disabled} ?: false, hasErrors=${hasErrors} ?: false"
+>
+  <textarea
+    rows="10"
+    th:class="${hasErrors}? 'form-control is-invalid' : 'form-control'"
+    th:field="*{__${field}__}"
+    th:placeholder="${label}"
+    th:value="*{__${field}__}"
+    th:disabled="${disabled}"
+  />
+  <label th:for="${field}" th:text="${label}">Default Label</label>
+  <div
+    th:if="${hasErrors}"
+    th:errors="*{__${field}__}"
+    class="invalid-feedback"
+  >
+    Error message
+  </div>
+</div>
+
+<div
+  class="form-floating"
+  th:fragment="fileField(field, label)"
+  th:with="disabled=${disabled} ?: false, hasErrors=${hasErrors} ?: false"
+>
+  <input
+    type="file"
+    th:class="${hasErrors}? 'form-control is-invalid' : 'form-control'"
+    th:field="*{__${field}__}"
+    th:placeholder="${label}"
+    th:disabled="${disabled}"
+  />
+  <label class="form-label" th:for="${field}" th:text="${label}">Default Label</label>
+  <div
+    th:if="${hasErrors}"
+    th:errors="*{__${field}__}"
+    class="invalid-feedback"
+  >
+    Error message
+  </div>
+</div>
+
+<div
+  class="form-check form-switch"
+  th:fragment="checkboxField(field, label)"
+  th:with="disabled=${disabled} ?: false"
+>
+  <input
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+    th:field="*{__${field}__}"
+    th:checked="*{__${field}__}"
+    th:disabled="${disabled}"
+  />
+  <label class="form-check-label" th:for="${field}" th:text="${label}"></label>
+</div>

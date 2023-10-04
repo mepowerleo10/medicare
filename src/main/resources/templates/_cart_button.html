@@ -1,0 +1,13 @@
+<a
+  th:href="@{/checkout}"
+  id="cartButton"
+  class="btn btn-outline-primary rounded me-4 position-relative"
+>
+  <i class="bi bi-cart2"></i>
+  <span
+    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+    th:text="${cart.size()}"
+  >
+    <span class="visually-hidden">items</span>
+  </span>
+</a>

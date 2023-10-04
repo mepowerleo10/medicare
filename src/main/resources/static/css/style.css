@@ -1,0 +1,7 @@
+.sidebar {
+  min-height: 96vh;
+}
+
+.sidebar .position-sticky {
+  top: 0;
+}

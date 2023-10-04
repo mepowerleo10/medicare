@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "storage.location",
+  "type": "java.lang.String",
+  "description": "Path for storage filesystem."
+}]}

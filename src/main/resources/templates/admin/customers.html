@@ -1,0 +1,24 @@
+<div layout:decorate="~{admin/base}" layout:fragment="content">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Customers</h2>
+  </div>
+  <div class="table-responsive small">
+    <table class="table table-striped table-hover table-sm align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Account</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="m : ${customers}">
+          <td th:text="${m.id}"></td>
+          <td th:text="${m.username}"></td>
+          <td th:text="${m.account}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

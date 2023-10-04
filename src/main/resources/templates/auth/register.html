@@ -1,0 +1,90 @@
+<html layout:decorate="~{auth/base}">
+  <title layout:fragment="title">MediCare - Sign Up</title>
+  <main class="form-signin w-50 m-auto" layout:fragment="content">
+    <form
+      class="needs-validation"
+      th:action="@{/register}"
+      method="post"
+      th:object="${user}"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          th:class="${#fields.hasErrors('username')}? 'form-control is-invalid' : 'form-control'"
+          name="username"
+          id="username"
+          placeholder="Username"
+          th:field="*{username}"
+        />
+        <label for="username">Username</label>
+        <div
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"
+          class="invalid-feedback"
+        >
+          Username error
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="password"
+              th:class="${#fields.hasErrors('password')}? 'form-control is-invalid' : 'form-control'"
+              id="password"
+              placeholder="Password"
+              name="password"
+              th:field="*{password}"
+            />
+            <label for="password">Password</label>
+            <div
+              th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}"
+              class="invalid-feedback"
+            >
+              Password error
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="password"
+              th:class="${#fields.hasErrors('confirmPassword')}? 'form-control is-invalid' : 'form-control'"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+              th:field="*{confirmPassword}"
+            />
+            <label for="confirmPassword">Confirm Password</label>
+            <div
+              th:if="${#fields.hasErrors('confirmPassword')}"
+              th:errors="*{confirmPassword}"
+              class="invalid-feedback"
+            >
+              Confirm Password error
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="avatar" class="form-label">Avatar</label>
+          <input class="form-control" type="file" id="avatar" name="avatar" />
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2" type="submit">Sign Up</button>
+      <div class="d-flex justify-content-between mt-5 mb-3">
+        <p class="text-body-secondary">©MediCare 2023</p>
+        <a th:href="@{/login}">Have an Account? Login</a>
+      </div>
+    </form>
+  </main>
+</html>

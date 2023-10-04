@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    image: 'mariadb:latest'
+    container_name: mariadb
+    environment:
+      - 'MARIADB_DATABASE=mydatabase'
+      - 'MARIADB_PASSWORD=secret'
+      - 'MARIADB_ROOT_PASSWORD=verysecret'
+      - 'MARIADB_USER=myuser'
+    ports:
+      - '3306:3306'
+
+  medicare:
+    image: 'medicare'
+    container_name: medicare
+    environment:
+      - 'DB_HOST=mariadb'
+      - 'DB_USER=myuser'
+      - 'DB_PASSWORD=verysecret'
+      - STORAGE=/opt/medicare/uploads
+    volumes:
+      - ./uploads:/opt/medicare/uploads

@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div
+        class="w-100 d-flex justify-content-between align-items-center modal-title"
+      >
+        <h5><span sec:authentication="name">Bob</span></h5>
+        <button
+          class="btn btn-outline-warning"
+          hx:get="@{/users/edit-profile}"
+          hx-target="#modal"
+        >
+          <i class="bi bi-pen"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body" th:object="${user}">
+      <div class="row mb-2 g-2">
+        <div class="col-2">
+          <a
+            th:href="@{/files/avatars/user}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              th:src="@{/files/avatars/user}"
+              th:alt="*{username}"
+              width="56"
+              class="img-thumbnail"
+            />
+          </a>
+        </div>
+        <div class="col-10">
+          <div
+            th:replace="~{form_fields :: textField(
+            field='username',
+            label='Username',
+            disabled=true
+          )}"
+          ></div>
+        </div>
+      </div>
+      <div class="row mb-2 g-2">
+        <div class="col">
+          <div
+            th:replace="~{form_fields :: textField(
+            field='account',
+            label='Account Number',
+            disabled=true
+          )}"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
