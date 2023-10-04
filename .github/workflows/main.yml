@@ -45,13 +45,14 @@ jobs:
           path: build/libs/
 
       - name: Copy Application JAR to Remote
-        uses: garygrossgarten/github-action-scp@release
+        uses: appleboy/scp-action@v0.1.4
         with:
-          local: build/libs/medicare-0.0.1-SNAPSHOT.jar
-          remote: /opt/medicare/medicare.jar
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
-          privateKey: ${{ secrets.ID_RSA }}
+          key: ${{ secrets.ID_RSA }}
+          source: "build/libs/medicare-0.0.1-SNAPSHOT.jar"
+          target: /opt/medicare/
+          strip_components: 2
 
   # build_docker_image:
   #   name: Build Docker Image and Push to ECR
