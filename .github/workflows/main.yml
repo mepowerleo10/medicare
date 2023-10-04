@@ -56,10 +56,9 @@ jobs:
       - name: Restart the service
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.ID_RSA }}
           script: |
             cd /opt/medicare
             mv medicare-*.jar medicare.jar
