@@ -1,0 +1,13 @@
+[Unit]
+Description=Medicare Service
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/opt/medicare/.env
+ExecStart=/usr/bin/java -jar /opt/medicare/medicare.jar
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

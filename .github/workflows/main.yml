@@ -30,7 +30,15 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-output
-          path: build/libs/
+          path: build/libs/medicare-0.0.1-SNAPSHOT.jar
+      - name: Copy Application JAR to Remote
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: build/libs/medicare-0.0.1-SNAPSHOT.jar
+          remote: /opt/medicare/medicare.jar
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          privateKey: ${{ secrets.ID_RSA }}
 
   # build_docker_image:
   #   name: Build Docker Image and Push to ECR
