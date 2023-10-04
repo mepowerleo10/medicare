@@ -35,6 +35,7 @@ jobs:
   deploy_to_linode:
     name: Copy and Deploy the JAR
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: Download Artifacts
