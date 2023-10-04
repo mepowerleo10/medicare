@@ -47,11 +47,11 @@ jobs:
       - name: Copy Application JAR to Remote
         uses: appleboy/scp-action@v0.1.4
         with:
-          source: build/libs/medicare-0.0.1-SNAPSHOT.jar
-          target: /opt/medicare/medicare.jar
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.ID_RSA }}
+          source: "build/libs/medicare-0.0.1-SNAPSHOT.jar"
+          target: /opt/medicare/medicare.jar
 
   # build_docker_image:
   #   name: Build Docker Image and Push to ECR
