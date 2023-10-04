@@ -30,7 +30,19 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-output
-          path: build/libs/medicare-0.0.1-SNAPSHOT.jar
+          path: build/libs/*
+
+  deploy_to_linode:
+    name: Copy and Deploy the JAR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output
+          path: build/libs/
+
       - name: Copy Application JAR to Remote
         uses: garygrossgarten/github-action-scp@release
         with:
