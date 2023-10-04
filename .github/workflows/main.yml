@@ -53,6 +53,17 @@ jobs:
           source: "build/libs/medicare-0.0.1-SNAPSHOT.jar"
           target: /opt/medicare/
           strip_components: 2
+      - name: Restart the service
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /opt/medicare
+            mv medicare-*.jar medicare.jar
+            sudo systemctl restart medicare
 
   # build_docker_image:
   #   name: Build Docker Image and Push to ECR
