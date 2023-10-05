@@ -6,9 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.marisia.medicare.model.AppUser;
-import com.marisia.medicare.repository.AppUserRepository;
-import com.marisia.medicare.repository.DrugRepository;
+import com.marisia.medicare.service.AppUserService;
 import com.marisia.medicare.service.payment.PaymentProperties;
 import com.marisia.medicare.service.storage.StorageService;
 
@@ -20,12 +18,13 @@ public class MedicareApplication {
 	}
 
 	@Bean
-	CommandLineRunner prePopulateData(DrugRepository drugRepository, AppUserRepository usersRepository,
-			PasswordEncoder encoder, PaymentProperties paymentProperties) {
+	CommandLineRunner setUpInitialData(
+			AppUserService userService,
+			PaymentProperties paymentProperties,
+			PasswordEncoder encoder) {
+
 		return args -> {
-			usersRepository
-					.save(new AppUser(1, "system", encoder.encode("none"), paymentProperties.getAccountNumber(), "SYSTEM"));
-			usersRepository.save(new AppUser(2, "admin", encoder.encode("123"), null, "USER,ADMIN"));
+			userService.initializeSystemAndAdminUsers(paymentProperties, encoder);
 		};
 	}
 
